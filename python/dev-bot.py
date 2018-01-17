@@ -23,6 +23,7 @@ GPIO.setup(pinMotorABackwards, GPIO.OUT)
 GPIO.setup(pinMotorBForwards, GPIO.OUT)
 GPIO.setup(pinMotorBBackwards, GPIO.OUT)
 
+#flash indicator to know that script has loaded
 for x in range(1, 10):
 	GPIO.output(indicatorLight,False)
 	time.sleep(.5)
