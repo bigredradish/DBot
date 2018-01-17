@@ -1,8 +1,10 @@
 # import curses and GPIO
 import curses
 import RPi.GPIO as GPIO
-import os #added so we can shut down OK
-import time #import time module
+import os
+import sys
+import time
+from twython import Twython # sudo pip install twython may need pip?
 
 # Set variables for the GPIO motor pins
 # Check pins
@@ -30,6 +32,20 @@ for x in range(1, 10):
 	GPIO.output(indicatorLight,True)
 	time.sleep(1)
 
+#tweet status
+CONSUMER_KEY = ''
+CONSUMER_SECRET = ''
+ACCESS_KEY = ''
+ACCESS_SECRET = ''
+
+api = Twython(CONSUMER_KEY,CONSUMER_SECRET,ACCESS_KEY,ACCESS_SECRET)
+
+cmd = '/opt/vc/bin/vcgencmd measure_temp'
+line = os.popen(cmd).readline().strip()
+temp = line.split('=')[1].split("'")[0]
+api.update_status(status='DBot says: I\'m awake and my current CPU temperature is '+temp+' C')
+
+# DO RoBoT Stuff
 # Define Drive Functions - might need tweaking
 # Turn all motors off
 def StopMotors():
