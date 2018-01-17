@@ -6,7 +6,7 @@ import time #import time module
 
 # Set variables for the GPIO motor pins
 # Check pins
-indicatorLight = 29
+indicatorLight = 25
 pinMotorAForwards = 10
 pinMotorABackwards = 9
 pinMotorBForwards = 8
@@ -23,27 +23,33 @@ GPIO.setup(pinMotorABackwards, GPIO.OUT)
 GPIO.setup(pinMotorBForwards, GPIO.OUT)
 GPIO.setup(pinMotorBBackwards, GPIO.OUT)
 
+for x in range(1, 10):
+	GPIO.output(indicatorLight,False)
+	time.sleep(.5)
+	GPIO.output(indicatorLight,True)
+	time.sleep(1)
+
 # Define Drive Functions - might need tweaking
 # Turn all motors off
 def StopMotors():
-    GPIO.output(pinMotorAForwards, 0)
-    GPIO.output(pinMotorABackwards, 0)
-    GPIO.output(pinMotorBForwards, 0)
-    GPIO.output(pinMotorBBackwards, 0)
+	GPIO.output(pinMotorAForwards, 0)
+	GPIO.output(pinMotorABackwards, 0)
+	GPIO.output(pinMotorBForwards, 0)
+	GPIO.output(pinMotorBBackwards, 0)
 
 # Turn both motors forwards
 def Forwards():
-    GPIO.output(pinMotorAForwards, 1)
-    GPIO.output(pinMotorABackwards, 0)
-    GPIO.output(pinMotorBForwards, 1)
-    GPIO.output(pinMotorBBackwards, 0)
+	GPIO.output(pinMotorAForwards, 1)
+	GPIO.output(pinMotorABackwards, 0)
+	GPIO.output(pinMotorBForwards, 1)
+	GPIO.output(pinMotorBBackwards, 0)
 
 # Turn both motors backwards
 def Backwards():
-    GPIO.output(pinMotorAForwards, 0)
-    GPIO.output(pinMotorABackwards, 1)
-    GPIO.output(pinMotorBForwards, 0)
-    GPIO.output(pinMotorBBackwards, 1)
+	GPIO.output(pinMotorAForwards, 0)
+	GPIO.output(pinMotorABackwards, 1)
+	GPIO.output(pinMotorBForwards, 0)
+	GPIO.output(pinMotorBBackwards, 1)
 
 # Turn left 
 def Left(): 
@@ -58,12 +64,6 @@ def Right():
 	GPIO.output(pinMotorABackwards, 0)
 	GPIO.output(pinMotorBForwards, 0)
 	GPIO.output(pinMotorBBackwards, 1)
-
-for x in range(1, 10):
-	GPIO.output(indicatorLight,False)
-	time.sleep(.5)
-	GPIO.output(indicatorLight,True)
-	time.sleep(1)
 
 # Get the curses window, turn off echoing of keyboard to screen, turn on
 # instant (no waiting) key response, and use special values for cursor keys
