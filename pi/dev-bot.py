@@ -137,6 +137,10 @@ try:
 		if char == ord('q'):
 			break
 		if char == ord('S'): # Added for shutdown on capital S
+			response = requests.post(
+    				webhook_url, data=json.dumps(slack_data),
+    				headers={'Content-Type': 'application/json'}
+			)
 			os.system ('sudo shutdown now') # shutdown right now!
 		elif char == curses.KEY_UP:
 			Forwards()
@@ -155,7 +159,7 @@ finally:
 	curses.endwin()
 	GPIO.cleanup()
 	#api.update_status(status=datetime.now().strftime("%Y-%m-%d %H:%M:%S")+' DBot says: Shutting Down...')
-	slack_data = {'text': "Shutting Down..."}
+	slack_data = {'text': "Quitting Program..."}
 
 	response = requests.post(
     		webhook_url, data=json.dumps(slack_data),
