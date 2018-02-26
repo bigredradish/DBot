@@ -11,7 +11,8 @@ blnkt.set_brightness(.1)
 def pomodoro_fade(color = (255,0,0), min=25):
     blnkt.set_all(color[0], color[1], color[2])
     blnkt.show()
-    for p in range(8):
+    #for p in range(8):
+    for p in range(blnkt.NUM_PIXELS):
         for i in range(1, 256):
             time.sleep(min*60/8/255.0)
             #slow color intensity decrease
