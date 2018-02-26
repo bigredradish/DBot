@@ -40,7 +40,8 @@ try:
         write("\033[{}A".format(lines - 1))
 		
 	blinkt.set_all(rgb[0], rgb[1], rgb[2])
-
+	blinkt.show()
+	
         time.sleep(1)
         
 except KeyboardInterrupt:
