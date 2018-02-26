@@ -38,7 +38,8 @@ try:
         write(output)
         lines = len(output.split("\n"))
         write("\033[{}A".format(lines - 1))
-		
+	
+	blinkt.clear()
 	blinkt.set_all(rgb[0], rgb[1], rgb[2])
 	blinkt.show()
 	
